@@ -33,6 +33,13 @@
             font-size: 14px;
             color: #9cdcfe;
             border-bottom: 1px solid #333333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        #status {
+            font-size: 12px;
+            color: #858585;
         }
         textarea {
             flex: 1;
@@ -51,9 +58,31 @@
 <body>
 
     <div class="notepad">
-        <div class="notepad-header">Mon Bloc-notes - Saisi rapide</div>
-        <textarea placeholder="Écrivez vos notes ici..."></textarea>
+        <div class="notepad-header">
+            <span>Mon Bloc-notes</span>
+            <span id="status">Sauvegardé</span>
+        </div>
+        <textarea id="noteInput" placeholder="Écrivez vos notes ici... Vos modifications seront sauvegardées automatiquement."></textarea>
     </div>
+
+    <script>
+        const noteInput = document.getElementById('noteInput');
+        const status = document.getElementById('status');
+
+        // Charger le texte sauvegardé au démarrage
+        if (localStorage.getItem('savedNote')) {
+            noteInput.value = localStorage.getItem('savedNote');
+        }
+
+        // Sauvegarder automatiquement à chaque modification
+        noteInput.addEventListener('input', () => {
+            localStorage.setItem('savedNote', noteInput.value);
+            status.textContent = 'Modifié...';
+            setTimeout(() => {
+                status.textContent = 'Sauvegardé';
+            }, 500);
+        });
+    </script>
 
 </body>
 </html>
