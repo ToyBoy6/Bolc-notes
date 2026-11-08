@@ -1,4 +1,5 @@
 # Bolc-notes
+# EN COURS DE TRANSFERT DE LA 2.0.0 ! MERCI DE PATIENTER !
 # Prochaine maj :
 - Thème claire/sombre
 # Version | Maj
